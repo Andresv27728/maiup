@@ -13,7 +13,7 @@ global.botNumber = ''
 
 global.owner = [
   ['50493732693', '♡ Wirk ♡', true],
-  ['51921826291', 'Maycol', true]
+  ['573133374132', 'yo soy yo', true]
 ]
 
 global.mods = []
