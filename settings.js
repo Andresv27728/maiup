@@ -14,7 +14,7 @@ global.botNumber = ''
 global.owner = [
   ['50493732693', '♡ Wirk ♡', true],
   ['573133374132', 'yo soy yo', true],
-  ['', '', false],
+  ['529721211672', 'miku', false],
   ['', '', false],
   ['', '', false],
   ['', '', false],
