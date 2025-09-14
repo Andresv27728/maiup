@@ -27,7 +27,7 @@ global.owner = [
 ]
 
 global.mods = []
-global.suittag = ['50493732693']
+global.suittag = ['']
 global.prems = []
 
 global.libreria = 'Baileys'
@@ -35,18 +35,18 @@ global.baileys = 'V 6.7.16'
 global.languaje = 'Español'
 global.vs = '2.2.0'
 global.nameqr = 'MaiBot-MD'
-global.namebot = '✿◟Mᴀɪ - Bᴏᴛ◞✿'
+global.namebot = 'HATSUNE MIKU'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots'
 global.yukiJadibts = true
 
 global.packname = '🌸 Mᴀɪ • Bᴏᴛ 🌸'
-global.botname = '🌷 Mᴀɪ 🌷'
-global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ ᴍᴀɪ-ʙᴏᴛ ʙʏ ᴡɪʀᴋ 💫'
-global.author = '🍡 By Wirk 🍡'
-global.dev = '🌼 Wirk Dev 🌼'
-global.textbot = '💖 Mᴀɪ-Bᴏᴛ • 𝖯𝗈𝖽𝖾𝗋𝖾𝗌 𝖡𝗒 𝖶𝗂𝗋𝗄 💖'
-global.etiqueta = '🌸 @Wirk 🌸'
+global.botname = 'HATSUNE MIKU'
+global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ MIKU-ʙᴏᴛ💫'
+global.author = 'MIKU'
+global.dev = 'YO SOY YO'
+global.textbot = '💖 MIKU-Bᴏᴛ'
+global.etiqueta = 'HATSUNE MIKU'
 
 global.moneda = 'MimiCoins🫦'
 global.welcom1 = '⌗ Usa *setwelcome* para editar este mensaje'
@@ -58,8 +58,8 @@ global.gp1 = 'https://chat.whatsapp.com/GBcSWbfm3JO1HhmbdbnrsH'
 global.comunidad1 = 'https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY'
 global.channel = 'https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f'
 global.channel2 = global.channel
-global.md = 'https://github.com/The-King-Destroy/Yuki_Suou-Bot'
-global.correo = 'spjxd@gmail.com'
+global.md = ''
+global.correo = ''
 global.cn = global.channel
 
 global.catalogo = fs.readFileSync('./src/catalogo.jpg')
