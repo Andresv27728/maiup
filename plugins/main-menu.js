@@ -13,7 +13,7 @@ let handler = async (m, { conn, args }) => {
 ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮
 
 ︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
-> ᰔᩚ Hola! @${userId.split('@')[0]}, Soy *Mai*, Aquí tienes la lista de comandos.\n*(˶ᵔ ᵕ ᵔ˶)*
+> ᰔᩚ Hola! @${userId.split('@')[0]}, Soy *Miku*, Aquí tienes la lista de comandos.\n*(˶ᵔ ᵕ ᵔ˶)*
 
 *╭┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰*
 │✧ *Modo* » ${conn.user.jid == global.conn.user.jid ? 'Bot Principal' : 'Sub-Bot'}
