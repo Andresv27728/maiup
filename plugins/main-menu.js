@@ -1,3 +1,5 @@
+import images from '../lib/images.js'
+
 let handler = async (m, { conn, args }) => {
     let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
     let user = global.db.data.users[userId]
@@ -588,7 +590,7 @@ let handler = async (m, { conn, args }) => {
     externalAdReply: {
       title: "♦ Mai ♦ World Of Cute", // Título del reply con símbolos
       body: "➤ Powered By Wirk ★", // Cuerpo del reply con símbolos
-      thumbnailUrl: banner, // Asegúrate de que banner esté definido (URL o ruta a la imagen)
+      thumbnailUrl: images.menu,
       sourceUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY", // Asegúrate de que la URL sea correcta
       mediaType: 1, // Tipo de media (1 para imagen)
       showAdAttribution: true,
