@@ -13,6 +13,19 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let totalreg = Object.keys(global.db.data.users).length
   let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
 
+  const decorations = [
+    { header: '╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴✧ *%category* ✧╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜', footer: '╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ' },
+    { header: '╭─┅──┅──┅──┅──┅──┅─╮\n│-ˋˏ *%category* ˎˊ-', footer: '╰─┅──┅──┅──┅──┅──┅─╯' },
+    { header: '╔═══*.·:·.☽✧    ✦    ✧☾.·:·.*═══╗\n\n            *%category*', footer: '╚═══*.·:·.☽✧    ✦    ✧☾.·:·.*═══╝' },
+    { header: '╭───────────\n│-> *%category*', footer: '╰───────────' },
+    { header: '┏━━◨ *%category* ◧━━┓', footer: '┗━━◨ - - - - - - ◧━━┛' },
+    { header: '✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧\n\n           *%category*', footer: '✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧⋄⋆⋅⋆⋄✧' },
+    { header: '┌─── · 。ﾟ☆: *.☽ .* :☆ﾟ. ───┐\n\n              *%category*', footer: '└─── · 。ﾟ☆: *.☽ .* :☆ﾟ. ───┘' },
+    { header: '╔════ ≪ •❈• ≫ ════╗\n\n            *%category*', footer: '╚════ ≪ •❈• ≫ ════╝' },
+    { header: '╔.★. .════════════════. .★.╗\n\n                 *%category*', footer: '╚.★. .════════════════. .★.╝' },
+    { header: '»»-----------► *%category* ◄-----------««', footer: '»»-----------► - - - - - ◄-----------««' }
+  ];
+
   let help = Object.values(global.plugins)
     .filter(plugin => !plugin.disabled && plugin.help && plugin.tags)
     .map(plugin => {
@@ -78,17 +91,15 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 `
 
   for (let item of menu) {
-    txt += `
-╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴✧ *${item.tag.toUpperCase()}* ✧╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
-> ❀ *Comandos de ${item.tag.toLowerCase()}*
-`
+    const randomDecoration = decorations[Math.floor(Math.random() * decorations.length)];
+    txt += `\n${randomDecoration.header.replace('%category', item.tag.toUpperCase())}\n`
     for (let plugin of item.plugins) {
       txt += `✦ *${plugin.prefix}${plugin.help}*\n`
     }
-    txt += `╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ\n\n`
+    txt += `${randomDecoration.footer}\n`
   }
 
-  txt += `> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*`
+  txt += `\n> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*`
 
   await conn.sendMessage(m.chat, {
     text: txt.trim(),
