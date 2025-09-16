@@ -59,6 +59,7 @@ const isAudio = command.toLowerCase().includes('mp3') || command.toLowerCase().i
 const format = isAudio ? 'mp3' : '720' 
 
 const audioApis = [
+{ url: () => fetchInvidious(yt_play[0].url, 'audio'), extract: (data) => ({ data, isDirect: true }) },
 { url: () => savetube.download(yt_play[0].url, format), extract: (data) => ({ data: data.result.download, isDirect: false }) },
 { url: () => ogmp3.download(yt_play[0].url, selectedQuality, 'audio'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
 { url: () => ytmp3(yt_play[0].url), extract: (data) => ({ data, isDirect: true }) },
@@ -74,6 +75,7 @@ return { data: mp3.url, isDirect: false }}},
 }];
 
 const videoApis = [
+{ url: () => fetchInvidious(yt_play[0].url, 'video'), extract: (data) => ({ data, isDirect: true }) },
 { url: () => savetube.download(yt_play[0].url, '720'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
 { url: () => ogmp3.download(yt_play[0].url, selectedQuality, 'video'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
 { url: () => ytmp4(yt_play[0].url), extract: (data) => ({ data, isDirect: true }) },
@@ -162,17 +164,24 @@ async function fetchY2mate(url) {
   return downloadInfo.result.url;
 }
 
-async function fetchInvidious(url) {
-  const apiUrl = `https://invidious.io/api/v1/get_video_info`;
+async function fetchInvidious(url, format = 'audio') {
+  const videoId = url.match(youtubeRegexID)[1];
+  if (!videoId) throw new Error("Invalid YouTube URL");
 
-const response = await fetch(`${apiUrl}?url=${encodeURIComponent(url)}`);
-const data = await response.json();
+  const apiUrl = `https://yewtu.be/api/v1/videos/${videoId}`;
+  const response = await fetch(apiUrl);
+  const data = await response.json();
 
-if (data && data.video) {
-const videoInfo = data.video;
-return videoInfo; 
-} else {
-throw new Error("No se pudo obtener información del video desde Invidious");
+  if (data && data.formatStreams) {
+    if (format === 'audio') {
+      const audioStream = data.formatStreams.find(s => s.container === 'm4a' && s.encoding === 'aac');
+      return audioStream ? audioStream.url : null;
+    } else {
+      const videoStream = data.formatStreams.find(s => s.container === 'mp4' && s.resolution === '720p');
+      return videoStream ? videoStream.url : null;
+    }
+  } else {
+    throw new Error("No se pudo obtener información del video desde Invidious");
   }
 }
 
