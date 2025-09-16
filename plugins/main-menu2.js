@@ -1,6 +1,7 @@
 import { promises } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
+import images from '../lib/images.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -75,7 +76,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮   ̮
 
 ︶•︶°︶•︶°︶•︶°︶•︶°︶•︶°︶
-> ᰔᩚ Hola! @${userId.split('@')[0]}, Soy *Mai*, Aquí tienes la lista de comandos.\n*(˶ᵔ ᵕ ᵔ˶)*
+> ᰔᩚ Hola! @${userId.split('@')[0]}, Soy *Miku*, Aquí tienes la lista de comandos.\n*(˶ᵔ ᵕ ᵔ˶)*
 
 *╭┈ࠢ͜┅ࠦ͜͜╾݊͜─ؕ͜─ׄ͜─֬͜─֟͜─֫͜─ׄ͜─ؕ͜─݊͜┈ࠦ͜┅ࠡ͜͜┈࠭͜͜۰۰͜۰*
 │✧ *Modo* » ${conn.user.jid == global.conn.user.jid ? 'Bot Principal' : 'Sub-Bot'}
@@ -115,7 +116,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       externalAdReply: {
         title: "♦ Mai ♦ World Of Cute",
         body: "➤ Powered By Wirk ★",
-        thumbnailUrl: "https://files.catbox.moe/36xbc8.jpg",
+        thumbnailUrl: images.menu,
         sourceUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY",
         mediaType: 1,
         showAdAttribution: true,
