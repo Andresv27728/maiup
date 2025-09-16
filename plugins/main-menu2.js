@@ -67,9 +67,11 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let uptime = clockString(_uptime)
   let totalreg = Object.keys(global.db.data.users).length
   let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
-  let help = Object.values(global.plugins).filter(plugin => !plugin.disabled).map(plugin => {
+  let help = Object.values(global.plugins)
+    .filter(plugin => !plugin.disabled && plugin.help && plugin.tags)
+    .map(plugin => {
     return {
-      help: Array.isArray(plugin.tags) ? plugin.help : [plugin.help],
+      help: Array.isArray(plugin.help) ? plugin.help : [plugin.help],
       tags: Array.isArray(plugin.tags) ? plugin.tags : [plugin.tags],
       prefix: 'customPrefix' in plugin,
       limit: plugin.limit,
