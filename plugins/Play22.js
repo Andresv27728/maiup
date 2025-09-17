@@ -8,13 +8,6 @@ const handler = async (m, { conn, text, command, args }) => {
 
   const input = text.trim() || args[0];
   let youtubeUrl = input;
-  let calidad = '360p';
-
-  const calidadMatch = input.match(/(?:full\s*)?(\d{3,4}p)/i);
-  if (calidadMatch) {
-    calidad = calidadMatch[1];
-    youtubeUrl = input.replace(calidadMatch[0], '').trim();
-  }
 
   if (!/^https?:\/\//i.test(youtubeUrl)) {
     try {
@@ -30,7 +23,6 @@ const handler = async (m, { conn, text, command, args }) => {
   }
 
   try {
-    // Reacción inicial ⏳
     await conn.sendMessage(m.chat, {
       react: {
         text: '⏳',
@@ -38,22 +30,21 @@ const handler = async (m, { conn, text, command, args }) => {
       }
     });
 
-    const apiUrl = `http://api-nevi.ddns.net:8000/youtube?url=${encodeURIComponent(youtubeUrl)}&audio=false&calidad=${calidad}`;
+    const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(youtubeUrl)}&format=video`;
     const res = await fetch(apiUrl);
+    const json = await res.json();
 
-    const contentType = res.headers.get("content-type") || "";
-    if (contentType.includes("application/json")) {
-      const error = await res.json();
-      return conn.reply(m.chat, `❌ Error: ${error.error || 'No se pudo obtener el archivo'}`, m);
+    if (json.status !== "true") {
+      // Assuming the API sends a message on failure
+      return conn.reply(m.chat, `❌ Error: ${json.message || 'No se pudo obtener la información del video.'}`, m);
     }
 
-    const buffer = await res.buffer();
-    const fileName = res.headers.get("content-disposition")?.split("filename=")[1]?.replace(/"/g, '') || 'video.mp4';
+    const { title, url: videoUrl, thumbnail, quality } = json.data;
 
-    // Enviar el video rápidamente
-    await conn.sendFile(m.chat, buffer, fileName, '', m, false, { mimetype: contentType });
+    const caption = `*${title}*\n*Calidad:* ${quality}`;
 
-    // Reacción final ✅
+    await conn.sendFile(m.chat, videoUrl, `${title}.mp4`, caption, m);
+
     await conn.sendMessage(m.chat, {
       react: {
         text: '✅',
@@ -67,8 +58,8 @@ const handler = async (m, { conn, text, command, args }) => {
   }
 };
 
-handler.command = ['playmp4'];
-handler.help = ['play2 <nombre/url> [calidad]'];
+handler.command = ['play2', 'playmp4'];
+handler.help = ['play2 <nombre/url>'];
 handler.tags = ['descargas'];
 handler.register = true;
 
