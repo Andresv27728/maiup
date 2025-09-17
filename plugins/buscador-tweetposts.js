@@ -1,5 +1,5 @@
 // By Jtxs 🐢
-// https://whatsapp.com/channel/0029Vanjyqb2f3ERifCpGT0W
+// https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L
 
 import axios from 'axios';
 const { proto, generateWAMessageFromContent, generateWAMessageContent } = (await import('@whiskeysockets/baileys')).default;

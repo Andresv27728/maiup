@@ -56,7 +56,7 @@ global.avatar = 'https://qu.ax/oBByS.jpg'
 
 global.gp1 = 'https://chat.whatsapp.com/GBcSWbfm3JO1HhmbdbnrsH'
 global.comunidad1 = 'https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY'
-global.channel = 'https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f'
+global.channel = 'https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L'
 global.channel2 = global.channel
 global.md = ''
 global.correo = ''
@@ -75,14 +75,14 @@ global.estilo = {
       status: 1,
       surface: 1,
       message: global.packname,
-      orderTitle: 'MaiBot',
+      orderTitle: 'miku',
       thumbnail: global.catalogo,
       sellerJid: '0@s.whatsapp.net'
     }
   }
 }
 global.ch = {
-  ch1: '120363402846939411@newsletter'
+  ch1: '120363403880016910@newsletter'
 }
 
 global.cheerio = cheerio
