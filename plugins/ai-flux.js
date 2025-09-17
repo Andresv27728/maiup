@@ -1,6 +1,6 @@
 /* 
 - Flux Ai Imagen By Angel-OFC 
-- https://whatsapp.com/channel/0029VaJxgcB0bIdvuOwKTM2Y
+- https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L
 */
 import axios from "axios";
 

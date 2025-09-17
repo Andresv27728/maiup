@@ -1,7 +1,7 @@
 /* 
 - tagall By Angel-OFC  
 - etiqueta en un grupo a todos
-- https://whatsapp.com/channel/0029VaJxgcB0bIdvuOwKTM2Y
+- https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L
 */
 const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, command, usedPrefix }) => {
   if (usedPrefix == 'a' || usedPrefix == 'A') return;

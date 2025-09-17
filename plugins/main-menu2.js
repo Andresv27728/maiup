@@ -108,8 +108,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       mentionedJid: [m.sender],
       isForwarded: true,
       forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363371008200788@newsletter',
-        newsletterName: 'The Kantu Bot ⚡',
+        newsletterJid: '120363403880016910@newsletter',
+        newsletterName: 'miku',
         serverMessageId: -1,
       },
       forwardingScore: 16,
