@@ -6,23 +6,25 @@ var handler = async (m, { usedPrefix, command }) => {
         await m.react('🔎'); 
         conn.sendPresenceUpdate('composing', m.chat);
 
-        const dirs = ['./plugins2', './plugins'];
+        const dirs = ['./plugins'];
         let response = `${emoji} *Revisión de Syntax Errors:*\n\n`;
         let hasErrors = false;
 
         for (const pluginsDir of dirs) {
-            const files = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js'));
+            if (fs.existsSync(pluginsDir)) {
+                const files = fs.readdirSync(pluginsDir).filter(file => file.endsWith('.js'));
 
-            for (const file of files) {
-                try {
-                    await import(path.resolve(pluginsDir, file));
-                } catch (error) {
-                    hasErrors = true;
-                    response += `${emoji} *Error en:* ${file} (${pluginsDir})\n`;
-                    if (error.loc) {
-                        response += `*Línea:* ${error.loc.line}, *Columna:* ${error.loc.column}\n`;
+                for (const file of files) {
+                    try {
+                        await import(path.resolve(pluginsDir, file));
+                    } catch (error) {
+                        hasErrors = true;
+                        response += `${emoji} *Error en:* ${file}\n`;
+                        if (error.loc) {
+                            response += `*Línea:* ${error.loc.line}, *Columna:* ${error.loc.column}\n`;
+                        }
+                        response += `${error.message}\n\n`;
                     }
-                    response += `${error.message}\n\n`;
                 }
             }
         }
