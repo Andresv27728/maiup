@@ -12,8 +12,8 @@ import moment from 'moment-timezone'
 global.botNumber = ''
 
 global.owner = [
-  ['50493732693', '♡ Wirk ♡', true],
-  ['573133374132', 'yo soy yo', true],
+  ['50493732693', 'YO SOY YO', true],
+  ['573133374132', 'YO SOY YO', true],
   ['529721211672', 'miku', false],
   ['', '', false],
   ['', '', false],
@@ -35,18 +35,18 @@ global.baileys = 'V 6.7.16'
 global.languaje = 'Español'
 global.vs = '2.2.0'
 global.nameqr = 'MaiBot-MD'
-global.namebot = 'HATSUNE MIKU'
+global.namebot = 'HATSUNE MIKU MIKU'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots'
 global.yukiJadibts = true
 
-global.packname = '🌸 Mᴀɪ • Bᴏᴛ 🌸'
-global.botname = 'HATSUNE MIKU'
-global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ MIKU-ʙᴏᴛ💫'
-global.author = 'MIKU'
+global.packname = '🌸 HATSUNE MIKU MIKU 🌸'
+global.botname = 'HATSUNE MIKU MIKU'
+global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ HATSUNE MIKU MIKU💫'
+global.author = 'YO SOY YO'
 global.dev = 'YO SOY YO'
-global.textbot = '💖 MIKU-Bᴏᴛ'
-global.etiqueta = 'HATSUNE MIKU'
+global.textbot = '💖 HATSUNE MIKU MIKU'
+global.etiqueta = 'HATSUNE MIKU MIKU'
 
 global.moneda = 'MimiCoins🫦'
 global.welcom1 = '⌗ Usa *setwelcome* para editar este mensaje'
