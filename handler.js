@@ -176,8 +176,6 @@ if (!('antiLink' in chat))
 chat.antiLink = true
 if (!('reaction' in chat))
 chat.reaction = false
-if (!('nsfw' in chat))
-chat.nsfw = false
 if (!('antifake' in chat))
 chat.antifake = false
 if (!('delete' in chat))
@@ -205,7 +203,6 @@ modoadmin: false,
 antiLink: true,
 antifake: false,
 reaction: false,
-nsfw: false,
 expired: 0,
 antiLag: false,
 per: [],
