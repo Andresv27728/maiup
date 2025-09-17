@@ -279,6 +279,8 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Convierte imágen/video en urls. 🔗
 ✦ *#wiki • #wikipedia*
 > ⸙ Investigar cualquier tema a través de Wikipedia. 📖🤓
+✦ *#transcribir • #transcript*
+> ⸙ Transcribe videos de YouTube. 📝▶️
 ✦ *#dalle • #flux*
 > ⸙ Crea imágenes con texto mediante IA. 🖼️✍️
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
@@ -573,7 +575,7 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Crea una sala de juego. ✗○Game
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
-> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*
+> *© Powered by ${global.author}*
 `.trim()
 
   await conn.sendMessage(m.chat, {
