@@ -36,6 +36,6 @@ handler.tags = ['tools'];
 handler.command = ['maycode', 'codigo'];
 handler.group = false;
 handler.register = true;
-handel.coin = 1;
+handler.coin = 1;
 
 export default handler;

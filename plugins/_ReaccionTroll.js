@@ -1,7 +1,11 @@
 import ytdl from 'ytdl-core';
 import yts from 'yt-search';
 import fs from 'fs';
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const TMP_FOLDER = path.resolve(__dirname, '../tmp');
 if (!fs.existsSync(TMP_FOLDER)) fs.mkdirSync(TMP_FOLDER, { recursive: true });
