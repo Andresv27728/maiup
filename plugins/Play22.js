@@ -2,23 +2,23 @@ import yts from 'yt-search';
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, command, args }) => {
-  if (!text.trim() && !args[0]) {
+  if (!args[0]) {
     return conn.reply(m.chat, '🔎 Ingresa el nombre o URL del video.', m);
   }
 
-  const input = text.trim() || args[0];
-  let youtubeUrl = input;
+  let youtubeUrl = args.join(' ');
 
-  if (!/^https?:\/\//i.test(youtubeUrl)) {
+  // Check if the input is not a URL, then search
+  if (!youtubeUrl.match(/youtu/gi)) {
     try {
       const search = await yts(youtubeUrl);
       if (!search.videos.length) {
-        return conn.reply(m.chat, '❌ No se encontraron resultados.', m);
+        return conn.reply(m.chat, '❌ No se encontraron resultados para tu búsqueda.', m);
       }
       youtubeUrl = search.videos[0].url;
     } catch (e) {
       console.error(e);
-      return conn.reply(m.chat, '❌ Error en la búsqueda.', m);
+      return conn.reply(m.chat, '❌ Error al realizar la búsqueda en YouTube.', m);
     }
   }
 
@@ -35,8 +35,7 @@ const handler = async (m, { conn, text, command, args }) => {
     const json = await res.json();
 
     if (json.status !== "true") {
-      // Assuming the API sends a message on failure
-      return conn.reply(m.chat, `❌ Error: ${json.message || 'No se pudo obtener la información del video.'}`, m);
+      return conn.reply(m.chat, `❌ Error de la API: ${json.message || 'No se pudo obtener la información del video.'}`, m);
     }
 
     const { title, url: videoUrl, thumbnail, quality } = json.data;
@@ -54,7 +53,7 @@ const handler = async (m, { conn, text, command, args }) => {
 
   } catch (err) {
     console.error('Error al contactar la API:', err);
-    conn.reply(m.chat, `❌ Error al contactar la API: ${err.message}`, m);
+    conn.reply(m.chat, `❌ Error al procesar la solicitud: ${err.message}`, m);
   }
 };
 
