@@ -1,39 +1,38 @@
+import fetch from 'node-fetch';
 import axios from 'axios';
-import { getStream } from 'node-web-streams';
 
-let handler = async (m, { conn, text, args }) => {
+let handler = async (m, { conn, text, args, usedPrefix, command }) => {
   try {
-    if (!text) return conn.reply(m.chat, `❀ Ejemplo: .ytv https://youtube.com/watch?v=Hx920thF8X4`, m);
+    if (!text) return conn.reply(m.chat, `❀ Ejemplo: ${usedPrefix + command} https://youtube.com/watch?v=Hx920thF8X4`, m);
 
     if (!/^(?:https?:\/\/)?(?:www\.|m\.|music\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?/.test(args[0])) {
       return m.reply(`Enlace inválido`);
     }
 
-    m.react('⏱️');
+    m.react('⏳');
 
-    let json = await ytdl(args[0]);
-    let size = await getSize(json.url);
-    let maxSize = 1_073_741_824;
+    const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(args[0])}&format=video`;
+    const res = await fetch(apiUrl);
+    const json = await res.json();
 
-    if (size && size > maxSize) {
-      return m.reply(`El video pesa más de 1 GB (${await formatSize(size)}). Usa otro más ligero.`);
+    if (json.status !== "true") {
+      return conn.reply(m.chat, `❌ Error: ${json.message || 'No se pudo obtener la información del video.'}`, m);
     }
 
-    const caption = `*「✦」 : ${json.title}*
-\n> ❒ Peso: ${await formatSize(size)}\n> 🜸 URL: ${args[0]}\n> ⨶ ⍴r᥆᥎і᥎ᥱძ ᑲᥡ mᥲі ッ`;
+    const { title, url: videoUrl, quality } = json.data;
 
-    const { data: stream } = await axios.get(json.url, { responseType: 'stream' });
+    const caption = `*${title}*\n*Calidad:* ${quality}`;
 
     await conn.sendMessage(m.chat, {
-      document: stream,
-      fileName: `${json.title}.mp4`,
+      document: { url: videoUrl },
+      fileName: `${title}.mp4`,
       mimetype: 'video/mp4',
-      caption
+      caption: caption
     }, { quoted: m });
 
-    m.react('☑️');
+    m.react('✅');
   } catch (e) {
-    m.reply(`Error: ${e}`);
+    m.reply(`Error: ${e.message || e}`);
   }
 };
 handler.help = ['ytmp4doc'];
@@ -42,5 +41,3 @@ handler.tags = ['downloader'];
 handler.diamond = true;
 
 export default handler;
-
-// ytdl, formatSize y getSize iguales al mensaje anterior
