@@ -1,5 +1,5 @@
 const handler = async (m, { conn, participants, groupMetadata }) => {
-  const { welcome, autolevelup, antiBot, antiBot2, autoAceptar, autoRechazar, autoresponder, modoadmin, reaction, nsfw, detect, antiLink, antiLink2, antitoxic, antiTraba, antifake } = global.db.data.chats[m.chat];
+  const { welcome, autolevelup, antiBot, antiBot2, autoAceptar, autoRechazar, autoresponder, modoadmin, reaction, detect, antiLink, antiLink2, antitoxic, antiTraba, antifake } = global.db.data.chats[m.chat];
   
   const text = `✨ *CONFIGURACIÓN DEL GRUPO* 
   
@@ -29,9 +29,6 @@ const handler = async (m, { conn, participants, groupMetadata }) => {
 
 ◈ Reaction: \`${reaction ? 'Activado' : 'Desactivado'}\`
 > ➨ *Descripción:* Activa o desactiva las reacciones en el Bot.
-
-◈ Nsfw: \`${nsfw ? 'Activado' : 'Desactivado'}\` 
-> ➨ *Descripción:* Activa o desactiva los comandos +18 en el grupo y no los envia.
 
 ◈ Detect: \`${detect ? 'Activado' : 'Desactivado'}\` 
 > ➨ *Descripción:* Activa o desactiva las notificaciones de cambios en el grupo.

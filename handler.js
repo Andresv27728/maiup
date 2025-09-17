@@ -176,8 +176,6 @@ if (!('antiLink' in chat))
 chat.antiLink = true
 if (!('reaction' in chat))
 chat.reaction = false
-if (!('nsfw' in chat))
-chat.nsfw = false
 if (!('antifake' in chat))
 chat.antifake = false
 if (!('delete' in chat))
@@ -205,7 +203,6 @@ modoadmin: false,
 antiLink: true,
 antifake: false,
 reaction: false,
-nsfw: false,
 expired: 0,
 antiLag: false,
 per: [],
@@ -254,7 +251,7 @@ m.text = ''
 
 let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
-const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const isROwner = [conn.decodeJid(global.conn.user?.id || ''), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const isOwner = isROwner || m.fromMe
 const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender) || _user.premium == true

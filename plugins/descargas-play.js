@@ -30,15 +30,15 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     let { title, thumbnail, timestamp, views, ago, url, author } = video;
 
-    let api = await fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${url}`);
-    let json = await api.json();
-    let { data } = json;
+    const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(url)}&format=audio`;
+    const res = await fetch(apiUrl);
+    const json = await res.json();
 
-    if (!data || !data.dl) {
-      return star.reply(m.chat, '✦ *Error al obtener el enlace de descarga desde la API.*', m).then(() => m.react('✖️'));
+    if (json.status !== "true") {
+      return star.reply(m.chat, `❌ Error: ${json.message || 'No se pudo obtener la información del audio.'}`, m);
     }
 
-    let { dl: downloadUrl, size: sizeHumanReadable } = data;
+    const { url: downloadUrl, quality } = json.data;
 
     let txt = `➪ Descargando › *${title}*\n\n`;
     txt += `> ✩ Canal › *${author.name}*\n`;
@@ -49,28 +49,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
 
     await star.sendFile(m.chat, thumbnail, 'thumbnail.jpg', txt, m);
 
-    // Convertimos duración a minutos
-    let durationMinutes = 0;
-    if (timestamp.includes(':')) {
-      let parts = timestamp.split(':').map(Number).reverse();
-      durationMinutes = parts[0] / 60 + (parts[1] || 0) + (parts[2] || 0) * 60;
-    }
+    await star.sendFile(m.chat, downloadUrl, `${title}.mp3`, '', m);
 
-    // Lógica para tipo de mensaje
-    let isShort = durationMinutes <= 11;
-    let type = isShort ? 'video' : 'document';
-
-    await star.sendMessage(
-      m.chat,
-      {
-        [type]: { url: downloadUrl },
-        mimetype: 'video/mp4',
-        fileName: `${title}.mp4`
-      },
-      { quoted: m }
-    );
-
-    await m.react('📄');
+    await m.react('✅');
   } catch (error) {
     console.error(error);
     await m.react('✖️');
@@ -78,5 +59,9 @@ let handler = async (m, { conn: star, args, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['play11', 'play2'];
+handler.command = ['play', 'play.1'];
+handler.help = ['play <nombre/url>'];
+handler.tags = ['descargas'];
+handler.register = true;
+
 export default handler;

@@ -1,140 +1,28 @@
 import fetch from 'node-fetch';
 import yts from 'yt-search';
-import ytdl from 'ytdl-core';
 import axios from 'axios';
-import { savetube } from '../lib/yt-savetube.js'
-import { ogmp3 } from '../lib/youtubedl.js'; 
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { ytmp3, ytmp4 } = require("@hiudyy/ytdl");
+
 const LimitAud = 725 * 1024 * 1024; // 725MB
 const LimitVid = 425 * 1024 * 1024; // 425MB
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/;
 
-const handler = async (m, { conn, command, args, text, usedPrefix }) => {
-if (!text) return m.reply(`**˚₊· ͟͟͞͞➳❥ Y T ¸.☆.¸⁭ P L A Y*\n*Ingrese el nombre de la canción*\n\n*Ejemplo:*\n${usedPrefix + command} emilia 420`);
-const tipoDescarga = command === 'play' || command === 'musica' ? 'audio' : command === 'play2' ? 'video' : command === 'play3' ? 'audio (documento)' : command === 'play4' ? 'video (documento)' : '';
-let videoIdToFind = text.match(youtubeRegexID) || null;
-const yt_play = await search(args.join(' ')); 
-let ytplay2 = await yts(videoIdToFind === null ? text : 'https://youtu.be/' + videoIdToFind[1]);
-if (videoIdToFind) {
-const videoId = videoIdToFind[1];
-ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)}
-ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2;
-await conn.sendMessage(m.chat, { text: `${yt_play[0].title}
-> [ YOUTUBE - PLAY ] 
+// Helper functions that were missing or misplaced
+async function search(query) {
+  const results = await yts(query);
+  return results.videos;
+}
 
-*ੈ✰‧₊˚ /Duración ${secondString(yt_play[0].duration.seconds)}
-*ੈ✰‧₊˚ Aguarde un momento en lo que envío su ${tipoDescarga}*`,  
-contextInfo:{  
-forwardedNewsletterMessageInfo: { 
-newsletterJid: '120363371008200788@newsletter', 
-serverMessageId: '', 
-newsletterName: 'The Kantu Bot ⚡' },
-forwardingScore: 9999999,  
-isForwarded: true,   
-mentionedJid: null,  
-externalAdReply: {  
-showAdAttribution: true,  
-renderLargerThumbnail: true,  
-title: yt_play[0].title,   
-body: wm,
-containsAutoReply: true,  
-mediaType: 1,   
-thumbnailUrl: yt_play[0].thumbnail, 
-sourceUrl: [nna, nna2, nnaa].getRandom()
-}}}, { quoted: m })
-/*conn.sendFile(m.chat, yt_play[0].thumbnail, 'error.jpg', `${yt_play[0].title}
-*⇄ㅤ     ◁   ㅤ  ❚❚ㅤ     ▷ㅤ     ↻*
-
-*⏰ Duración:* ${secondString(yt_play[0].duration.seconds)}
-*👉🏻Aguarde un momento en lo que envío su audio*`, m, null, fake);*/
-
-const [input, qualityInput = command === 'play' || command === 'musica' || command === 'play3' ? '320' : '720'] = text.split(' ');
-const audioQualities = ['64', '96', '128', '192', '256', '320'];
-const videoQualities = ['240', '360', '480', '720', '1080'];
-const isAudioCommand = command === 'play' || command === 'musica' || command === 'play3';
-const selectedQuality = (isAudioCommand ? audioQualities : videoQualities).includes(qualityInput) ? qualityInput : (isAudioCommand ? '320' : '720');
-const isAudio = command.toLowerCase().includes('mp3') || command.toLowerCase().includes('audio')
-const format = isAudio ? 'mp3' : '720' 
-
-const audioApis = [
-{ url: () => fetchInvidious(yt_play[0].url, 'audio'), extract: (data) => ({ data, isDirect: true }) },
-{ url: () => savetube.download(yt_play[0].url, format), extract: (data) => ({ data: data.result.download, isDirect: false }) },
-{ url: () => ogmp3.download(yt_play[0].url, selectedQuality, 'audio'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
-{ url: () => ytmp3(yt_play[0].url), extract: (data) => ({ data, isDirect: true }) },
-{ url: () => fetch(`https://api.dorratz.com/v3/ytdl?url=${yt_play[0].url}`).then(res => res.json()), extract: (data) => { 
-const mp3 = data.medias.find(media => media.quality === "160kbps" && media.extension === "mp3");
-return { data: mp3.url, isDirect: false }}},
-{ url: () => fetch(`${APIs.neoxr.url}/youtube?url=${yt_play[0].url}&type=audio&quality=128kbps&apikey=${APIs.neoxr.key}`).then(res => res.json()), extract: (data) => ({ data: data.data.url, isDirect: false }) },
-{ url: () => fetch(`https://api.fgmods.xyz/api/downloader/ytmp4?url=${yt_play[0].url}&apikey=${APIs.fgmods.url}`).then(res => res.json()), extract: (data) => ({ data: data.result.dl_url, isDirect: false }) },
-{ url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${yt_play[0].url}`).then(res => res.json()), extract: (data) => ({ data: data.dl, isDirect: false }) },
-{ url: () => fetch(`${apis}/download/ytmp3?url=${yt_play[0].url}`).then(res => res.json()), extract: (data) => ({ data: data.status ? data.data.download.url : null, isDirect: false }) },
-{ url: () => fetch(`https://api.zenkey.my.id/api/download/ytmp3?apikey=zenkey&url=${yt_play[0].url}`).then(res => res.json()), extract: (data) => ({ data: data.result.download.url, isDirect: false }) },
-{ url: () => fetch(`https://exonity.tech/api/dl/playmp3?query=${yt_play[0].title}`).then(res => res.json()), extract: (data) => ({ data: data.result.download, isDirect: false }) 
-}];
-
-const videoApis = [
-{ url: () => fetchInvidious(yt_play[0].url, 'video'), extract: (data) => ({ data, isDirect: true }) },
-{ url: () => savetube.download(yt_play[0].url, '720'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
-{ url: () => ogmp3.download(yt_play[0].url, selectedQuality, 'video'), extract: (data) => ({ data: data.result.download, isDirect: false }) },
-{ url: () => ytmp4(yt_play[0].url), extract: (data) => ({ data, isDirect: true }) },
-{ url: () => fetch(`https://api.siputzx.my.id/api/d/ytmp4?url=${yt_play[0].url}`).then(res => res.json()), extract: (data) => ({ data: data.dl, isDirect: false }) },
-{ url: () => fetch(`${APIs.neoxr.url}/youtube?url=${yt_play[0].url}&type=video&quality=720p&apikey=${APIs.neoxr.key}`).then(res => res.json()), extract: (data) => ({ data: data.data.url, isDirect: false }) },
-{ url: () => fetch(`https://api.fgmods.xyz/api/downloader/ytmp4?url=${yt_play[0].url}&apikey=${APIs.fgmods.key}`).then(res => res.json()), extract: (data) => ({ data: data.result.dl_url, isDirect: false }) },
-{ url: () => fetch(`${apis}/download/ytmp4?url=${encodeURIComponent(yt_play[0].url)}`).then(res => res.json()), extract: (data) => ({ data: data.status ? data.data.download.url : null, isDirect: false }) },
-{ url: () => fetch(`https://exonity.tech/api/dl/playmp4?query=${encodeURIComponent(yt_play[0].title)}`).then(res => res.json()), extract: (data) => ({ data: data.result.download, isDirect: false })
-}];
-
-const download = async (apis) => {
-let mediaData = null;
-let isDirect = false;
-for (const api of apis) {
-try {
-const data = await api.url();
-const { data: extractedData, isDirect: direct } = api.extract(data);
-if (extractedData) {
-const size = await getFileSize(extractedData);
-if (size >= 1024) {
-mediaData = extractedData;
-isDirect = direct;
-break;
-}}} catch (e) {
-console.log(`Error con API: ${e}`);
-continue;
-}}
-return { mediaData, isDirect };
-};
-
-if (command === 'play' || command === 'musica') {
-const { mediaData, isDirect } = await download(audioApis);
-if (mediaData) {
-const fileSize = await getFileSize(mediaData);
-if (fileSize > LimitAud) {
-await conn.sendMessage(m.chat, { document: isDirect ? mediaData : { url: mediaData }, mimetype: 'audio/mpeg', fileName: `${yt_play[0].title}.mp3` }, { quoted: m });
-} else {
-await conn.sendMessage(m.chat, { audio: isDirect ? mediaData : { url: mediaData }, mimetype: 'audio/mpeg' }, { quoted: m });
-}} else {
-const d = Math.floor(seconds / (3600 * 24));
-const h = Math.floor((seconds % (3600 * 24)) / 3600);
-const m = Math.floor((seconds % 3600) / 60);
-const s = Math.floor(seconds % 60);
-const dDisplay = d > 0 ? d + (d == 1 ? ' día, ' : ' días, ') : '';
-const hDisplay = h > 0 ? h + (h == 1 ? ' hora, ' : ' horas, ') : '';
-const mDisplay = m > 0 ? m + (m == 1 ? ' minuto, ' : ' minutos, ') : '';
-const sDisplay = s > 0 ? s + (s == 1 ? ' segundo' : ' segundos') : '';
-return dDisplay + hDisplay + mDisplay + sDisplay;
-  }
-  
-const getBuffer = async (url) => {
-  try {
-    const response = await fetch(url);
-    const buffer = await response.arrayBuffer();
-    return Buffer.from(buffer);
-  } catch (error) {
-    console.error("Error al obtener el buffer", error);
-    throw new Error("Error al obtener el buffer");
-  }
+function secondString(seconds) {
+    seconds = Number(seconds);
+    var d = Math.floor(seconds / (3600 * 24));
+    var h = Math.floor(seconds % (3600 * 24) / 3600);
+    var m = Math.floor(seconds % 3600 / 60);
+    var s = Math.floor(seconds % 60);
+    var dDisplay = d > 0 ? d + (d == 1 ? " día, " : " días, ") : "";
+    var hDisplay = h > 0 ? h + (h == 1 ? " hora, " : " horas, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minuto, " : " minutos, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? " segundo" : " segundos") : "";
+    return dDisplay + hDisplay + mDisplay + sDisplay;
 }
 
 async function getFileSize(url) {
@@ -146,53 +34,59 @@ async function getFileSize(url) {
   }
 }
 
-async function fetchY2mate(url) {
-  const baseUrl = 'https://www.y2mate.com/mates/en60';
-  const videoInfo = await fetch(`${baseUrl}/analyze/ajax`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ url, q_auto: 0 })
-  }).then(res => res.json());
+const handler = async (m, { conn, command, args, text, usedPrefix }) => {
+    if (!text) return m.reply(`**˚₊· ͟͟͞͞➳❥ Y T ¸.☆.¸⁭ P L A Y*\n*Ingrese el nombre de la canción*\n\n*Ejemplo:*\n${usedPrefix + command} emilia 420`);
 
-  const id = videoInfo.result.id;
-  const downloadInfo = await fetch(`${baseUrl}/convert`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({ type: 'youtube', _id: id, v_id: url, token: '', ftype: 'mp4', fquality: '360p' })
-  }).then(res => res.json());
+    try {
+        const tipoDescarga = command === 'play' || command === 'musica' ? 'audio' : command === 'play2' ? 'video' : command === 'play3' ? 'audio (documento)' : command === 'play4' ? 'video (documento)' : '';
+        const yt_play = await search(args.join(' '));
+        if (!yt_play.length) return m.reply('No se encontraron resultados para tu búsqueda.');
 
-  return downloadInfo.result.url;
-}
+        const videoInfo = yt_play[0];
 
-async function fetchInvidious(url, format = 'audio') {
-  const videoId = url.match(youtubeRegexID)[1];
-  if (!videoId) throw new Error("Invalid YouTube URL");
+        await conn.sendMessage(m.chat, { text: `${videoInfo.title}\n> [ YOUTUBE - PLAY ] \n\n*ੈ✰‧₊˚ /Duración ${secondString(videoInfo.duration.seconds)}\n*ੈ✰‧₊˚ Aguarde un momento en lo que envío su ${tipoDescarga}*`});
 
-  const apiUrl = `https://yewtu.be/api/v1/videos/${videoId}`;
-  const response = await fetch(apiUrl);
-  const data = await response.json();
+        const isAudio = command === 'play' || command === 'musica' || command === 'play3';
+        const format = isAudio ? 'audio' : 'video';
 
-  if (data && data.formatStreams) {
-    if (format === 'audio') {
-      const audioStream = data.formatStreams.find(s => s.container === 'm4a' && s.encoding === 'aac');
-      return audioStream ? audioStream.url : null;
-    } else {
-      const videoStream = data.formatStreams.find(s => s.container === 'mp4' && s.resolution === '720p');
-      return videoStream ? videoStream.url : null;
+        const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(videoInfo.url)}&format=${format}`;
+        const { data } = await axios.get(apiUrl);
+
+        if (!data.status || data.status !== "true") {
+             return m.reply('No se pudo obtener el enlace de descarga.');
+        }
+
+        const mediaData = data.data.url;
+
+        if (mediaData) {
+            const fileSize = await getFileSize(mediaData);
+            const isDoc = command.includes('3') || command.includes('4');
+
+            if (isAudio) {
+                if (fileSize > LimitAud || isDoc) {
+                    await conn.sendMessage(m.chat, { document: { url: mediaData }, mimetype: 'audio/mpeg', fileName: `${videoInfo.title}.mp3` }, { quoted: m });
+                } else {
+                    await conn.sendMessage(m.chat, { audio: { url: mediaData }, mimetype: 'audio/mpeg' }, { quoted: m });
+                }
+            } else { // It's video
+                if (fileSize > LimitVid || isDoc) {
+                    await conn.sendMessage(m.chat, { document: { url: mediaData }, mimetype: 'video/mp4', fileName: `${videoInfo.title}.mp4` }, { quoted: m });
+                } else {
+                    await conn.sendMessage(m.chat, { video: { url: mediaData }, mimetype: 'video/mp4', caption: videoInfo.title }, { quoted: m });
+                }
+            }
+        } else {
+            m.reply('No se pudo descargar el archivo. La API no devolvió un enlace.');
+        }
+    } catch (e) {
+        console.error(e);
+        m.reply(`Ocurrió un error al procesar la solicitud: ${e.message}`);
     }
-  } else {
-    throw new Error("No se pudo obtener información del video desde Invidious");
-  }
-}
+};
 
-async function fetch9Convert(url) {
-const apiUrl = `https://9convert.com/en429/api`;
-const response = await fetch(`${apiUrl}?url=${encodeURIComponent(url)}`);
-const data = await response.json();
+handler.help = ['play', 'play2', 'play3', 'play4', 'musica'];
+handler.tags = ['descargas'];
+handler.command = /^(play|play2|play3|play4e|musica)$/i;
+handler.register = true;
 
-if (data.status === 'ok') {
-    return data.result.mp3;
-  } else {
-    throw new Error("No se pudo obtener la descarga desde 9Convert");
-  }
-}
+export default handler;

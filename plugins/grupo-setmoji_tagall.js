@@ -1,7 +1,7 @@
 /* 
 - Setemoji By Angel-OFC 
 - edita el tagall con tu emoji favorito 
-- https://whatsapp.com/channel/0029VaJxgcB0bIdvuOwKTM2Y
+- https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L
 */
 let handler = async (m, { conn, text, isRowner }) => {
 

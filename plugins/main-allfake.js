@@ -37,8 +37,8 @@ global.namecomu = 'ᰔᩚ ᥡᥙkіᑲ᥆𝗍-mძ • ᥴ᥆mᥙᥒі𝗍ᥡ �
 global.listo = '❀ *Aquí tienes ฅ^•ﻌ•^ฅ*'
 global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/xr2m6u.jpg')
 
-global.canalIdM = ["120363402846939411@newsletter", "120363402846939411@newsletter"]
-global.canalNombreM = ["⏤͟͟͞͞Vivos Vivientes 🌻❀", "🌳 𝖵𝗂𝗏𝗈𝗌 𝖵𝗂𝗏𝗂𝖾𝗇𝗍𝖾𝗌 🍄"]
+global.canalIdM = ["120363403880016910@newsletter"]
+global.canalNombreM = ["⏤͟͟͞͞miku 🌻❀"]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
@@ -66,7 +66,7 @@ global.waitt = '❍ Espera un momento, soy lenta...';
 global.waittt = '❍ Espera un momento, soy lenta...';
 global.waitttt = '❍ Espera un momento, soy lenta...';
 
-var canal = 'https://whatsapp.com/channel/0029Vagdmfv1SWt5nfdR4z3w'  
+var canal = 'https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L'
 var comunidad = 'https://chat.whatsapp.com/I0dMp2fEle7L6RaWBmwlAa'
 var git = 'https://github.com/The-King-Destroy'
 var github = 'https://github.com/The-King-Destroy/Yuki_Suou-Bot' 
@@ -90,10 +90,10 @@ global.taguser = '@' + m.sender.split("@s.whatsapp.net")
 var more = String.fromCharCode(8206)
 global.readMore = more.repeat(850)
 
-global.packsticker = `┊ ૮₍｡•́︿•̀｡₎ა *Mai Stickers*  
-╰┈➤ ୨୧ https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f ✿
+global.packsticker = `┊ ૮₍｡•́︿•̀｡₎ა *miku Stickers*
+╰┈➤ ୨୧ https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L ✿
 ┊ ℹ️ *Info:*  
-╰┈➤ 𖥻 Mai By Wirk 🪴`;
+╰┈➤ 𖥻 miku By YO SOY YO 🪴`;
 
 global.packsticker2 = `\n┊🌸 Bot: ${botname}
 ┊🌷 Usuario: ${nombre}
