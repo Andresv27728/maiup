@@ -1,6 +1,6 @@
 const handler = async (m, { conn }) => {
   const texto = `
-🌸 _*Mai Bot Sc*_ 🌸
+🌸 _*miku Sc*_ 🌸
 
 \`\`\`Repositorio OFC:\`\`\`
 https://github.com/Ado926/MaiBot
