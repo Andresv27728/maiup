@@ -573,7 +573,7 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Crea una sala de juego. ✗○Game
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
-> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*
+> *© Powered by ${global.author}*
 `.trim()
 
   await conn.sendMessage(m.chat, {
@@ -588,8 +588,8 @@ let handler = async (m, { conn, args }) => {
     },
     forwardingScore: 16,
     externalAdReply: {
-      title: "♦ Mai ♦ World Of Cute", // Título del reply con símbolos
-      body: "➤ Powered By Wirk ★", // Cuerpo del reply con símbolos
+      title: `♦ ${global.botname} ♦ World Of Cute`, // Título del reply con símbolos
+      body: `➤ Powered By ${global.author} ★`, // Cuerpo del reply con símbolos
       thumbnailUrl: images.menu,
       sourceUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY", // Asegúrate de que la URL sea correcta
       mediaType: 1, // Tipo de media (1 para imagen)

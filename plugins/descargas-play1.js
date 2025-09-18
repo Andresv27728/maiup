@@ -91,7 +91,7 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 │ ˗ˏˋ ✦ 𝖯𝗎𝖻𝗅𝗂𝖼𝖺𝖽𝗈: *${ago}*
 │ ˗ˏˋ ✦ 𝖤𝗇𝗅𝖺𝖼𝖾: ${url}
 ╰─♡̷̷̷̷ ༘*.ﾟ⋆
-꒰₊✧ By Mai 🌺 ˚.༄
+꒰₊✧ By ${global.botname} 🌺 ˚.༄
 `.trim();
 
     const thumb = (await conn.getFile(thumbnail))?.data;

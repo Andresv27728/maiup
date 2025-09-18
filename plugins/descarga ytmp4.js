@@ -25,7 +25,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args }) => {
 🍥 *Tamaño:* ${await formatSize(size) || "Desconocido"}
 🪷 *Enlace:* ${args[0]}
 
-💮 Enviado por *Mai* 💛`;
+💮 Enviado por *${global.botname}* 💛`;
 
     await conn.sendFile(
       m.chat,

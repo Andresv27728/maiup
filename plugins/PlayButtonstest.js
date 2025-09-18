@@ -1,12 +1,11 @@
 import fetch from 'node-fetch';
 
-// Manteniendo estos nombres como "Mai"
-const newsletterJid  = '120363402846939411@newsletter'; // ID de canal actual
-const newsletterName = 'Mai';
-const packname       = 'Mai'; // Aunque el snippet usa "☕︎︎ 𝘔𝘢𝘪 • 𝑊𝑜𝑟𝑙𝑑 𝑂𝑓 𝐶𝑢𝑡𝑒 🍁" para el title, packname podría usarse en otro lado, pero ajustaré el title en externalAdReply.
+const newsletterJid  = global.ch.ch1;
+const newsletterName = global.botname;
+const packname       = global.packname;
 
 // Nombre de la bot
-const botName = 'Mai';
+const botName = global.botname;
 
 var handler = async (m, { conn, args, usedPrefix, command }) => {
   const emoji = '🔎';

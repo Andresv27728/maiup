@@ -61,7 +61,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 │ https://chat.whatsapp.com/GHhOeix2sTY32wIO85pNgd
 │
 ╰────────•••────────╯
-> @Wirk
+> Creador: @${global.owner[0][0]}
 `.trim()
 
   await m.react('📩')
