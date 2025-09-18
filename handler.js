@@ -472,6 +472,8 @@ __dirname: ___dirname,
 __filename
 }
 try {
+const randomDelay = Math.floor(Math.random() * 4000) + 1000;
+await delay(randomDelay);
 await plugin.call(this, m, extra)
 if (!isPrems)
 m.coin = m.coin || plugin.coin || false
