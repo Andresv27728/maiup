@@ -90,10 +90,10 @@ global.taguser = '@' + m.sender.split("@s.whatsapp.net")
 var more = String.fromCharCode(8206)
 global.readMore = more.repeat(850)
 
-global.packsticker = `┊ ૮₍｡•́︿•̀｡₎ა *Mai Stickers*
-╰┈➤ ୨୧ https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f ✿
+global.packsticker = `┊ ૮₍｡•́︿•̀｡₎ა *${global.botname} Stickers*
+╰┈➤ ୨୧ ${global.channel} ✿
 ┊ ℹ️ *Info:*  
-╰┈➤ 𖥻 Mai By Wirk 🪴`;
+╰┈➤ 𖥻 ${global.botname} By ${global.author} 🪴`;
 
 global.packsticker2 = `\n┊🌸 Bot: ${botname}
 ┊🌷 Usuario: ${nombre}

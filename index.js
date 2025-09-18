@@ -41,15 +41,15 @@ const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 //let require = createRequire(megu)
 let { say } = cfonts
 
-console.log(chalk.bold.redBright(`\n❤️ Iniciando a Mai 👻\n`))
+console.log(chalk.bold.redBright(`\n❤️ Iniciando a ${global.botname} 👻\n`))
 
-say('MaiBot 🌻', {
+say(`${global.botname} 🌻`, {
 font: 'block',
 align: 'center',
 colors: ['magentaBright']
 })
 
-say(`By • Wirk 👻`, {
+say(`By • YO SOY YO 👻`, {
 font: 'console',
 align: 'center',
 colors: ['blueBright']
@@ -212,7 +212,7 @@ if (opcion == '1' || methodCodeQR) {
 console.log(chalk.bold.yellow(`\n❐ ESCANEA EL CÓDIGO QR EXPIRA EN 45 SEGUNDOS`))}
 }
 if (connection == 'open') {
-console.log(chalk.bold.green('\n🌸 Tu botsita Mai ha sido Conectada con éxito 🌹'))
+console.log(chalk.bold.green(`\n🌸 Tu botsita ${global.botname} ha sido Conectada con éxito 🌹`))
 }
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
 if (connection === 'close') {

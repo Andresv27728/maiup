@@ -100,7 +100,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     txt += `${randomDecoration.footer}\n`
   }
 
-  txt += `\n> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*`
+  txt += `\n> *© Powered by ${global.author}*`
 
   await conn.sendMessage(m.chat, {
     text: txt.trim(),
@@ -114,8 +114,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
       },
       forwardingScore: 16,
       externalAdReply: {
-        title: "♦ Mai ♦ World Of Cute",
-        body: "➤ Powered By Wirk ★",
+        title: `♦ ${global.botname} ♦ World Of Cute`,
+        body: `➤ Powered By ${global.author} ★`,
         thumbnailUrl: images.menu,
         sourceUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY",
         mediaType: 1,

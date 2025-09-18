@@ -18,7 +18,7 @@ const handler = async (m, { conn, text, usedPrefix: prefijo }) => {
             body: {
                 text: `乂  Y O U T U B E  -  P L A Y\n\n» *Título:* ${randomVideo.title}\n» *Duración:* ${randomVideo.duration.timestamp}\n» *Autor:* ${randomVideo.author.name || 'Desconocido'}\n» *Publicado:* ${randomVideo.ago}\n» *Enlace:* ${randomVideo.url}\n`
             },
-            footer: { text: `Edited By Wirk`.trim() },
+            footer: { text: `Edited By YO SOY YO`.trim() },
             header: {
                 title: ``,
                 hasMediaAttachment: true,

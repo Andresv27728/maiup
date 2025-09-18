@@ -1,9 +1,9 @@
 const handler = async (m, { conn }) => {
   const texto = `
-🌸 _*Mai Bot Sc*_ 🌸
+🌸 _*${global.botname} Sc*_ 🌸
 
 \`\`\`Repositorio OFC:\`\`\`
-https://github.com/Ado926/MaiBot
+https://github.com/Wilsmac/Fantasy-Bot-MD
 
 > 🌻 Deja tu estrellita ayudaría mucho :D
 
