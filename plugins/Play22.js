@@ -2,27 +2,35 @@ import yts from 'yt-search';
 import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, command, args }) => {
-  if (!args[0]) {
+  if (!text.trim() && !args[0]) {
     return conn.reply(m.chat, '🔎 Ingresa el nombre o URL del video.', m);
   }
 
-  let youtubeUrl = args.join(' ');
+  const input = text.trim() || args[0];
+  let youtubeUrl = input;
+  let calidad = '360p';
 
-  // Check if the input is not a URL, then search
-  if (!youtubeUrl.match(/youtu/gi)) {
+  const calidadMatch = input.match(/(?:full\s*)?(\d{3,4}p)/i);
+  if (calidadMatch) {
+    calidad = calidadMatch[1];
+    youtubeUrl = input.replace(calidadMatch[0], '').trim();
+  }
+
+  if (!/^https?:\/\//i.test(youtubeUrl)) {
     try {
       const search = await yts(youtubeUrl);
       if (!search.videos.length) {
-        return conn.reply(m.chat, '❌ No se encontraron resultados para tu búsqueda.', m);
+        return conn.reply(m.chat, '❌ No se encontraron resultados.', m);
       }
       youtubeUrl = search.videos[0].url;
     } catch (e) {
       console.error(e);
-      return conn.reply(m.chat, '❌ Error al realizar la búsqueda en YouTube.', m);
+      return conn.reply(m.chat, '❌ Error en la búsqueda.', m);
     }
   }
 
   try {
+    // Reacción inicial ⏳
     await conn.sendMessage(m.chat, {
       react: {
         text: '⏳',
@@ -30,20 +38,22 @@ const handler = async (m, { conn, text, command, args }) => {
       }
     });
 
-    const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(youtubeUrl)}&format=video`;
+    const apiUrl = `http://api-nevi.ddns.net:8000/youtube?url=${encodeURIComponent(youtubeUrl)}&audio=false&calidad=${calidad}`;
     const res = await fetch(apiUrl);
-    const json = await res.json();
 
-    if (json.status !== "true") {
-      return conn.reply(m.chat, `❌ Error de la API: ${json.message || 'No se pudo obtener la información del video.'}`, m);
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      const error = await res.json();
+      return conn.reply(m.chat, `❌ Error: ${error.error || 'No se pudo obtener el archivo'}`, m);
     }
 
-    const { title, url: videoUrl, thumbnail, quality } = json.data;
+    const buffer = await res.buffer();
+    const fileName = res.headers.get("content-disposition")?.split("filename=")[1]?.replace(/"/g, '') || 'video.mp4';
 
-    const caption = `*${title}*\n*Calidad:* ${quality}`;
+    // Enviar el video rápidamente
+    await conn.sendFile(m.chat, buffer, fileName, '', m, false, { mimetype: contentType });
 
-    await conn.sendFile(m.chat, videoUrl, `${title}.mp4`, caption, m);
-
+    // Reacción final ✅
     await conn.sendMessage(m.chat, {
       react: {
         text: '✅',
@@ -53,12 +63,12 @@ const handler = async (m, { conn, text, command, args }) => {
 
   } catch (err) {
     console.error('Error al contactar la API:', err);
-    conn.reply(m.chat, `❌ Error al procesar la solicitud: ${err.message}`, m);
+    conn.reply(m.chat, `❌ Error al contactar la API: ${err.message}`, m);
   }
 };
 
-handler.command = ['play2', 'playmp4'];
-handler.help = ['play2 <nombre/url>'];
+handler.command = ['playmp4'];
+handler.help = ['play2 <nombre/url> [calidad]'];
 handler.tags = ['descargas'];
 handler.register = true;
 

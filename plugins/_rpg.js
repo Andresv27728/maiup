@@ -265,7 +265,7 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
             break;
 
         case 'explore':
-        case 'explorar': {
+        case 'explorar':
             if (currentTime - user.lastExplore < COOLDOWN_EXPLORE) {
                 const timeLeft = COOLDOWN_EXPLORE - (currentTime - user.lastExplore);
                 await conn.reply(m.chat, `⏱️ Tu nave aún está escaneando el sector. Puedes explorar de nuevo en ${formatCooldownTime(timeLeft)}.`, m);
@@ -352,9 +352,9 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
 
             await conn.reply(m.chat, exploreResult, m);
             break;
-        }
+
         case 'mine':
-        case 'minar': {
+        case 'minar':
             if (currentTime - user.lastMine < COOLDOWN_MINE) {
                 const timeLeft = COOLDOWN_MINE - (currentTime - user.lastMine);
                 await conn.reply(m.chat, `⏱️ Tu láser de minería aún se está recargando. Puedes minar de nuevo en ${formatCooldownTime(timeLeft)}.`, m);
@@ -398,9 +398,9 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
                  await conn.reply(m.chat, `⛏️ Minaste en el sector ${user.location}, pero no encontraste recursos o tu bodega está llena.`, m);
             }
             break;
-        }
+
         case 'scan':
-        case 'escanear': {
+        case 'escanear':
             if (currentTime - user.lastScan < COOLDOWN_SCAN) {
                 const timeLeft = COOLDOWN_SCAN - (currentTime - user.lastScan);
                 await conn.reply(m.chat, `⏱️ Tu escáner aún está procesando datos. Puedes escanear de nuevo en ${formatCooldownTime(timeLeft)}.`, m);
@@ -426,9 +426,9 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
 
             await conn.reply(m.chat, scanText, m);
             break;
-        }
+
         case 'repair':
-        case 'reparar': {
+        case 'reparar':
             const repairNeeded = user.maxHull - user.hull;
             if (repairNeeded <= 0) {
                 await conn.reply(m.chat, `🛠️ Tu casco está en perfecto estado (${user.hull}/${user.maxHull}). No necesitas reparaciones.`, m);
@@ -449,9 +449,9 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
 
             await conn.reply(m.chat, `🛠️ Tu nave ha sido reparada completamente por ${repairCost} créditos. Casco: ${user.hull}/${user.maxHull}.`, m);
             break;
-        }
+
         case 'refuel':
-        case 'repostar': {
+        case 'repostar':
             const fuelNeeded = user.maxFuel - user.fuel;
             if (fuelNeeded <= 0) {
                 await conn.reply(m.chat, `⛽ Tu tanque de combustible está lleno (${user.fuel}/${user.maxFuel}). No necesitas repostar.`, m);
@@ -481,9 +481,9 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
 
             await conn.reply(m.chat, `⛽ Usaste ${fuelToUse} Células de Combustible para repostar. Tu combustible actual es ${user.fuel}/${user.maxFuel}.`, m);
             break;
-        }
+
         case 'upgrade':
-        case 'mejorar': {
+        case 'mejorar':
             if (args.length < 2) {
                 await conn.reply(m.chat, `🛠️ Debes especificar qué sistema quieres mejorar: casco, carga, arma, escudo, mineria.\n\nEjemplo: ${usedPrefix}space upgrade casco`, m);
                  // Save database before returning
@@ -577,10 +577,10 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
                      saveDatabase(db);
                     return; // Don't save if command is invalid
             }
-            break;
-        }
+            break; // Break after successful upgrade
+
         case 'trade':
-        case 'comerciar': {
+        case 'comerciar':
             if (args.length < 4) {
                  await conn.reply(m.chat, `💰 Uso correcto: ${usedPrefix}space trade [comprar/vender] [articulo] [cantidad]\n\nEjemplo: ${usedPrefix}space trade vender minerales 50`, m);
                   // Save database before returning
@@ -647,8 +647,7 @@ Eliminaciones: ${user.kills}, Muertes: ${user.deaths}
                   saveDatabase(db);
                  return; // Don't save if invalid action
             }
-            break;
-        }
+            break; // Break after successful trade
 
         case 'prices':
         case 'precios':
