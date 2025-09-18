@@ -305,62 +305,45 @@ for (let name in global.plugins) {
             continue
         }
 
+    let chat = global.db.data.chats[m.chat] || {}
     let isCmd = false;
     let command, args, text, usedPrefix, noPrefix, isAccept;
-    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
-    let _prefix = plugin.customPrefix ? plugin.customPrefix : conn.prefix ? conn.prefix : global.prefix;
-    let match = (_prefix instanceof RegExp ?
-        [[_prefix.exec(m.text), _prefix]] :
-        Array.isArray(_prefix) ?
-        _prefix.map(p => {
-            let re = p instanceof RegExp ?
-                p :
-                new RegExp(str2Regex(p));
-            return [re.exec(m.text), re];
-        }) :
-        typeof _prefix === 'string' ?
-        [[new RegExp(str2Regex(_prefix)).exec(m.text), new RegExp(str2Regex(_prefix))]] :
-        [[[], new RegExp]]
-    ).find(p => p[1]);
 
-    if ((usedPrefix = (match[0] || '')[0])) {
+    let prefixes = [];
+    if (chat.usePrefix) {
+        prefixes = chat.prefix ? [chat.prefix] : [global.prefix];
+    } else if (chat.multiprefix) {
+        prefixes = ['.'];
+    }
+
+    const str2Regex = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+    let match = prefixes.map(p => {
+        const re = p instanceof RegExp ? p : new RegExp(str2Regex(p));
+        return [re.exec(m.text), re];
+    }).find(p => p[0]);
+
+    if (match) {
+        usedPrefix = match[0][0];
         noPrefix = m.text.replace(usedPrefix, '');
         [command, ...args] = noPrefix.trim().split` `.filter(v => v);
-        args = args || [];
-        let _args = noPrefix.trim().split` `.slice(1);
-        text = _args.join` `;
+        text = noPrefix.trim().split` `.slice(1).join` `;
         command = (command || '').toLowerCase();
-        isAccept = plugin.command instanceof RegExp ?
-            plugin.command.test(command) :
-            Array.isArray(plugin.command) ?
-            plugin.command.some(cmd => cmd instanceof RegExp ?
-                cmd.test(command) :
-                cmd === command) :
-            typeof plugin.command === 'string' ?
-            plugin.command === command :
-            false;
-        if (isAccept) isCmd = true
-    } else {
-        let settings = global.db.data.settings[this.user.jid] || {};
-        if (settings.noprefix) {
-            command = m.text.toLowerCase();
-            isAccept = plugin.command instanceof RegExp ?
-                plugin.command.test(command) :
-                Array.isArray(plugin.command) ?
-                plugin.command.some(cmd => cmd instanceof RegExp ?
-                    cmd.test(command) :
-                    cmd === command) :
-                typeof plugin.command === 'string' ?
-                plugin.command === command :
-                false;
+        isAccept = plugin.command instanceof RegExp ? plugin.command.test(command) :
+                   Array.isArray(plugin.command) ? plugin.command.some(cmd => cmd instanceof RegExp ? cmd.test(command) : cmd === command) :
+                   typeof plugin.command === 'string' ? plugin.command === command : false;
+        if (isAccept) isCmd = true;
+    }
 
-            if (isAccept) {
-                isCmd = true
-                usedPrefix = ''
-                noPrefix = m.text
-                args = []
-                text = ''
-            }
+    if (!isCmd && !chat.usePrefix && !chat.multiprefix) {
+        command = m.text.toLowerCase();
+        isAccept = Array.isArray(plugin.command) ? plugin.command.some(cmd => cmd === command) :
+                   typeof plugin.command === 'string' ? plugin.command === command : false;
+        if (isAccept) {
+            isCmd = true;
+            usedPrefix = '';
+            noPrefix = m.text;
+            args = [];
+            text = '';
         }
     }
 
@@ -421,7 +404,7 @@ for (let name in global.plugins) {
                     return
             }
         }
-        let hl = _prefix
+        let hl = prefixes.join('')
         let adminMode = global.db.data.chats[m.chat].modoadmin
         let mini = `${plugins.botAdmin || plugins.admin || plugins.group || plugins || noPrefix || hl ||  m.text.slice(0, 1) == hl || plugins.command}`
         if (adminMode && !isOwner && !isROwner && m.isGroup && !isAdmin && mini) return
