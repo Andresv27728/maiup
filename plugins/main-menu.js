@@ -89,6 +89,14 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Info de capítulos de anime! 📚
 ✦ *#infoanime*
 > ⸙ Detalles de tu anime o manga! 📖
+✦ *#hentaisearch • #searchhentai*
+> ⸙ Buscador de animes hentai. (Solo +18) 🤫
+✦ *#xnxxsearch • #xnxxs*
+> ⸙ Buscador de vídeos de Xnxx. (Adultos, cuidado! 🔞)
+✦ *#xvsearch • #xvideossearch*
+> ⸙ Buscador de vídeos de Xvideos. (Adultos! 🔞)
+✦ *#pornhub • #phub*
+> ⸙ Buscador de videos de Pornhub. (Solo +18! 🔞)
 ✦ *#npmjs*
 > ⸙ Buscandor de npmjs. 📦
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
@@ -121,6 +129,10 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Descarga fotos/audios de tiktok. ↓🖼️🎧
 ✦ *#gitclone* + <url>
 > ⸙ Descarga un repositorio de github. 💾⚙️
+✦ *#xvideosdl*
+> ⸙ Descarga videos porno de (Xvideos). (Solo +18! 🔞)
+✦ *#xnxxdl*
+> ⸙ Descarga videos porno de (xnxx). (Solo +18! 🔞)
 ✦ *#apk • #modapk*
 > ⸙ Descarga un apk de Aptoide. 📱
 ✦ *#tiktokrandom • #ttrandom*
@@ -267,8 +279,6 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Convierte imágen/video en urls. 🔗
 ✦ *#wiki • #wikipedia*
 > ⸙ Investigar cualquier tema a través de Wikipedia. 📖🤓
-✦ *#transcribir • #transcript*
-> ⸙ Transcribe videos de YouTube. 📝▶️
 ✦ *#dalle • #flux*
 > ⸙ Crea imágenes con texto mediante IA. 🖼️✍️
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
@@ -403,6 +413,8 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Salta de felicidad 😄🥳
 ✦ *#hug* + <mencion>
 > ⸙ Dar un abrazo 🤗★
+✦ *#impregnate • #preg* + <mencion>
+> ⸙ Embarazar a alguien (Juego) 🤭♥️
 ✦ *#kill* + <mencion>
 > ⸙ Toma tu arma y mata a alguien (Juego, amigos!) 🔪☠️
 ✦ *#kiss • #besar* • #kiss2 + <mencion>
@@ -443,6 +455,52 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Fumar 🚬💨
 ✦ *#think* + <mencion>
 > ⸙ Pensar en algo 🤔💡
+╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
+
+╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴✧ *NSFW* ✧╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
+> ❀ *Comandos NSFW (Contenido para adultos).*
+✦ *#anal* + <mencion>
+> ⸙ Hacer un anal 😉
+✦ *#waifu*
+> ⸙ Buscá una waifu aleatorio. 🔥♥️
+✦ *#bath* + <mencion>
+> ⸙ Bañarse 🛁💧
+✦ *#blowjob • #mamada • #bj* + <mencion>
+> ⸙ Dar una mamada 😉
+✦ *#boobjob* + <mencion>
+> ⸙ Hacer una rusa 😉
+✦ *#cum* + <mencion>
+> ⸙ Venirse en alguien. 😉
+✦ *#fap* + <mencion>
+> ⸙ Hacerse una paja 😉
+✦ *#ppcouple • #ppcp*
+> ⸙ Genera imagenes para amistades o parejas. 💕★
+✦ *#footjob* + <mencion>
+> ⸙ Hacer una paja con los pies 😉
+✦ *#fuck • #coger • #fuck2* + <mencion>
+> ⸙ Follarte a alguien 😉
+✦ *#cafe • #coffe*
+> ⸙ Tomate un cafecito con alguien ☕😊
+ᰔᩚ *#violar • #perra + <mencion>
+> ⸙ Viola a alguien (Solo juego! 😈☠️)
+✦ *#grabboobs* + <mencion>
+> ⸙ Agarrrar tetas 😉
+✦ *#grop* + <mencion>
+> ⸙ Manosear a alguien 😉
+✦ *#lickpussy* + <mencion>
+> ⸙ Lamer un coño 😉
+✦ *#rule34 • #r34* + [Tags]
+> ⸙ Buscar imagenes en Rule34 (+18! 🔞🖼️)
+✦ *#sixnine • #69* + <mencion>
+> ⸙ Haz un 69 con alguien 😉
+✦ *#spank • #nalgada* + <mencion>
+> ⸙ Dar una nalgada 😉
+✦ *#suckboobs* + <mencion>
+> ⸙ Chupar tetas 😉
+✦ *#undress • #encuerar* + <mencion>
+> ⸙ Desnudar a alguien 😉
+✦ *#yuri • #tijeras* + <mencion>
+> ⸙ Hacer tijeras. 😉
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
 ╭┈ࠢ͜─ׄ֟፝͜─ׄ͜─ׄ͜╴✧ *GAMES* ✧╶͜─ׄ͜─ׄ֟፝͜─ׄ͜─ׄ͜
@@ -515,7 +573,7 @@ let handler = async (m, { conn, args }) => {
 > ⸙ Crea una sala de juego. ✗○Game
 ╰ׅ͜─֟͜─͜─ٞ͜─͜─๊͜─͜─๋͜─⃔═̶፝֟═̶⃔─๋͜─͜─͜─๊͜─ٞ͜─͜─֟͜┈ࠢ͜╯ׅ
 
-> *© Powered by ${global.author}*
+> *© ⍴᥆ᥕᥱrᥱძ ᑲᥡ wirksito*
 `.trim()
 
   await conn.sendMessage(m.chat, {
@@ -530,8 +588,8 @@ let handler = async (m, { conn, args }) => {
     },
     forwardingScore: 16,
     externalAdReply: {
-      title: "♦ miku ♦ World Of Cute", // Título del reply con símbolos
-      body: "➤ Powered By YO SOY YO ★", // Cuerpo del reply con símbolos
+      title: "♦ Mai ♦ World Of Cute", // Título del reply con símbolos
+      body: "➤ Powered By Wirk ★", // Cuerpo del reply con símbolos
       thumbnailUrl: images.menu,
       sourceUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY", // Asegúrate de que la URL sea correcta
       mediaType: 1, // Tipo de media (1 para imagen)

@@ -12,8 +12,8 @@ import moment from 'moment-timezone'
 global.botNumber = ''
 
 global.owner = [
-  ['50493732693', 'YO SOY YO', true],
-  ['573133374132', 'YO SOY YO', true],
+  ['50493732693', '♡ Wirk ♡', true],
+  ['573133374132', 'yo soy yo', true],
   ['529721211672', 'miku', false],
   ['', '', false],
   ['', '', false],
@@ -35,18 +35,18 @@ global.baileys = 'V 6.7.16'
 global.languaje = 'Español'
 global.vs = '2.2.0'
 global.nameqr = 'MaiBot-MD'
-global.namebot = 'HATSUNE MIKU MIKU'
+global.namebot = 'HATSUNE MIKU'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots'
 global.yukiJadibts = true
 
-global.packname = '🌸 HATSUNE MIKU MIKU 🌸'
-global.botname = 'HATSUNE MIKU MIKU'
-global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ HATSUNE MIKU MIKU💫'
-global.author = 'YO SOY YO'
+global.packname = '🌸 Mᴀɪ • Bᴏᴛ 🌸'
+global.botname = 'HATSUNE MIKU'
+global.wm = '💫 ᴘʀᴏᴄᴇssᴇᴅ ʙʏ MIKU-ʙᴏᴛ💫'
+global.author = 'MIKU'
 global.dev = 'YO SOY YO'
-global.textbot = '💖 HATSUNE MIKU MIKU'
-global.etiqueta = 'HATSUNE MIKU MIKU'
+global.textbot = '💖 MIKU-Bᴏᴛ'
+global.etiqueta = 'HATSUNE MIKU'
 
 global.moneda = 'MimiCoins🫦'
 global.welcom1 = '⌗ Usa *setwelcome* para editar este mensaje'
@@ -56,7 +56,7 @@ global.avatar = 'https://qu.ax/oBByS.jpg'
 
 global.gp1 = 'https://chat.whatsapp.com/GBcSWbfm3JO1HhmbdbnrsH'
 global.comunidad1 = 'https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY'
-global.channel = 'https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L'
+global.channel = 'https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f'
 global.channel2 = global.channel
 global.md = ''
 global.correo = ''
@@ -75,14 +75,14 @@ global.estilo = {
       status: 1,
       surface: 1,
       message: global.packname,
-      orderTitle: 'miku',
+      orderTitle: 'MaiBot',
       thumbnail: global.catalogo,
       sellerJid: '0@s.whatsapp.net'
     }
   }
 }
 global.ch = {
-  ch1: '120363403880016910@newsletter'
+  ch1: '120363402846939411@newsletter'
 }
 
 global.cheerio = cheerio

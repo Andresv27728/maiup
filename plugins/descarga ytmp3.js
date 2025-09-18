@@ -10,18 +10,32 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     }
   
     let videoIdToFind = text.match(youtubeRegexID) || null
-    let yt_search_result = await yts(videoIdToFind === null ? text : 'https://youtu.be/' + videoIdToFind[1])
-    let videoInfo = yt_search_result.videos[0]
+    let ytplay2 = await yts(videoIdToFind === null ? text : 'https://youtu.be/' + videoIdToFind[1])
 
-    if (!videoInfo) {
+    if (videoIdToFind) {
+      const videoId = videoIdToFind[1]
+      ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
+    }
+    ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2
+
+    if (!ytplay2 || ytplay2.length == 0) {
       return m.reply('✧ No se encontraron resultados para tu búsqueda.')
     }
     
-    let { title, thumbnail, timestamp, views, ago, url, author } = videoInfo
+    let { title, thumbnail, timestamp, views, ago, url, author } = ytplay2
+
+    title = title || 'no encontrado'
+    thumbnail = thumbnail || 'no encontrado'
+    timestamp = timestamp || 'no encontrado'
+    views = views || 'no encontrado'
+    ago = ago || 'no encontrado'
+    url = url || 'no encontrado'
+    author = author || 'no encontrado'
 
     const vistas = formatViews(views)
     const canal = author.name ? author.name : 'Desconocido'
 
+    // Crear el mensaje con la información del video de manera ordenada
     const infoMessage = `
 ╭♡༉✧˚ ༘⋆˚❀｡──♡───╮
  ʚ🌸ɞ URL 𝖣𝖾𝗌𝖼𝖺𝗋𝗀𝖺𝗌 🌴
@@ -42,8 +56,8 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
     const JT = {
       contextInfo: {
         externalAdReply: {
-          title: 'miku ☕',
-          body: 'By miku 👻',
+          title: 'Mai Bot ☕',
+          body: 'By Wirk 👻',
           mediaType: 1,
           previewType: 0,
           mediaUrl: url,
@@ -56,30 +70,42 @@ const handler = async (m, { conn, text, usedPrefix, command }) => {
 
     await conn.reply(m.chat, infoMessage, m, JT)
 
-    const isAudio = command === 'play' || command === 'yta' || command === 'ytmp3' || command === 'playaudio'
-    const format = isAudio ? 'audio' : 'video'
+    if (command === 'play' || command === 'yta' || command === 'ytmp3' || command === 'playaudio') {
+      try {
+        const api = await (await fetch(`https://api.vreden.my.id/api/ytmp3?url=${url}`)).json()
+        const resulta = api.result
+        const result = resulta.download.url
 
-    const apiUrl = `https://myapiadonix.casacam.net/download/yt?apikey=AdonixKeyvomkuv5056&url=${encodeURIComponent(url)}&format=${format}`;
-    const { data } = await axios.get(apiUrl);
+        if (!result) throw new Error('⚠ El enlace de audio no se generó correctamente.')
 
-    if (!data.status || data.status !== "true") {
-        return m.reply('⚠︎ No se pudo obtener el enlace de descarga. La API falló.');
-    }
+        await conn.sendMessage(m.chat, { audio: { url: result }, fileName: `${api.result.title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
+      } catch (e) {
+        return conn.reply(m.chat, '⚠︎ No se pudo enviar el audio. Esto puede deberse a que el archivo es demasiado pesado o a un error en la generación de la URL. Por favor, intenta nuevamente más tarde.', m)
+      }
+    } else if (command === 'playvid' || command === 'ytv' || command === 'ytmp4' || command === 'mp4') {
+      try {
+        const response = await fetch(`https://api.vreden.my.id/api/ytmp4?url=${url}`)
+        const json = await response.json()
+        const resultad = json.result
+        const resultado = resultad.download.url
 
-    const downloadUrl = data.data.url;
+        if (!resultad || !resultado) throw new Error('⚠ El enlace de video no se generó correctamente.')
 
-    if (isAudio) {
-        await conn.sendMessage(m.chat, { audio: { url: downloadUrl }, fileName: `${title}.mp3`, mimetype: 'audio/mpeg' }, { quoted: m })
+        await conn.sendFile(m.chat, resultado, resultad.title + '.mp4', title, m)
+
+      } catch (e) {
+        return conn.reply(m.chat, '⚠︎ No se pudo enviar el video. Esto puede deberse a que el archivo es demasiado pesado o a un error en la generación de la URL. Por favor, intenta nuevamente más tarde.', m)
+      }
     } else {
-        await conn.sendFile(m.chat, downloadUrl, `${title}.mp4`, title, m)
+      return conn.reply(m.chat, '✧︎ Comando no reconocido.', m)
     }
 
   } catch (error) {
-    return m.reply(`⚠︎ Ocurrió un error: ${error.message || error}`)
+    return m.reply(`⚠︎ Ocurrió un error: ${error}`)
   }
 }
 
-handler.command = handler.help = ['yta', 'ytmp3', 'playvid', 'ytv', 'ytmp4', 'mp4']
+handler.command = handler.help = ['yta', 'ytmp3', 'playvid']
 handler.tags = ['descargas']
 handler.group = true
 

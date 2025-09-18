@@ -1,5 +1,5 @@
-<h1 align="center">୨୧┈┈ miku ┈┈୨୧</h1>
-<p align="center"><img src="https://files.catbox.moe/elx34q.jpg" alt="Imagen del Bot miku" width="300px"></p>
+<h1 align="center">୨୧┈┈ 𝑴𝒂𝒊 𝑩𝒐𝒕 ┈┈୨୧</h1>
+<p align="center"><img src="https://files.catbox.moe/elx34q.jpg" alt="Imagen del Bot Mai" width="300px"></p>
 <p align="center">🌸 Tu compañerita siempre 🌸</p>
 
 ---
@@ -13,9 +13,9 @@
 </details>
 
 <details>
-  <summary><b> ✨ Funciones de miku</b></summary>
+  <summary><b> ✨ Funciones de Mai</b></summary>
   
-  *miku* está en constante evolución. Si encuentras errores, avisa al creador para mejorarlo.
+  *Mai* está en constante evolución. Si encuentras errores, avisa al creador para mejorarlo.
 
   ✿ *Funciones destacadas*:
   - [x] Mensajes de bienvenida y despedida personalizados  
@@ -157,7 +157,7 @@ npm start
 <details>
  <summary><b> 🜸 Enlaces Oficiales </b></summary>
 
- * Canal Oficial  [`Clickea 🤘`](https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L)
+ * Canal Oficial  [`Clickea 🤘`](https://whatsapp.com/channel/0029Vb5UfTC4CrfeKSamhp1f)
 * Grupo Oficial [`Click Aqui 👻`](https://chat.whatsapp.com/GBcSWbfm3JO1HhmbdbnrsH)
 * Comunidad Oficial [`Click aca 🐻‍❄️`](https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY)
 </details>

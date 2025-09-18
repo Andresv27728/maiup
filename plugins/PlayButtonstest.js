@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 
 // Manteniendo estos nombres como "Mai"
-const newsletterJid  = '120363403880016910@newsletter'; // ID de canal actual
-const newsletterName = 'miku';
-const packname       = 'miku';
+const newsletterJid  = '120363402846939411@newsletter'; // ID de canal actual
+const newsletterName = 'Mai';
+const packname       = 'Mai'; // Aunque el snippet usa "☕︎︎ 𝘔𝘢𝘪 • 𝑊𝑜𝑟𝑙𝑑 𝑂𝑓 𝐶𝑢𝑡𝑒 🍁" para el title, packname podría usarse en otro lado, pero ajustaré el title en externalAdReply.
 
 // Nombre de la bot
-const botName = 'miku';
+const botName = 'Mai';
 
 var handler = async (m, { conn, args, usedPrefix, command }) => {
   const emoji = '🔎';
@@ -71,10 +71,10 @@ var handler = async (m, { conn, args, usedPrefix, command }) => {
       },
       externalAdReply: {
         // Guiándonos por el snippet proporcionado:
-        title: "☕︎︎ miku • 𝑊𝑜𝑟𝑙𝑑 𝑂𝑓 𝐶𝑢𝑡𝑒 🍁", // Usamos el título del snippet
-        body: "✐ 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 𝖸𝖮 𝖲𝖮𝖸 𝖸𝖮 🌵", // Usamos el cuerpo del snippet
+        title: "☕︎︎ 𝘔𝘢𝘪 • 𝑊𝑜𝑟𝑙𝑑 𝑂𝑓 𝐶𝑢𝑡𝑒 🍁", // Usamos el título del snippet
+        body: "✐ 𝖯𝗈𝗐𝖾𝗋𝖾𝖽 𝖡𝗒 𝖶𝗂𝗋𝗄 🌵", // Usamos el cuerpo del snippet
         thumbnailUrl: thumbnailUrlValue, // Usamos la miniatura de la búsqueda
-        mediaUrl: "https://whatsapp.com/channel/0029VbBGSpEGehEJK1e3Cu2L", // El enlace de invitación
+        mediaUrl: "https://chat.whatsapp.com/KqkJwla1aq1LgaPiuFFtEY", // El enlace de invitación
         mediaType: 2, // Tipo de media 2
         showAdAttribution: true, // Mostrar atribución
         renderLargerThumbnail: true // Renderizar miniatura más grande
